@@ -1,0 +1,23 @@
+- hosts: cm-cms
+  tasks:
+    - name: httpd
+      yum: name=httpd state=installed
+
+    - name: php
+      yum: name=php state=installed
+
+    - name: mysql-epel
+      yum: name=http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm state=installed
+
+    - name: mysql-server
+      yum: name=mysql-server state=installed
+
+    - name: mysql-php
+      yum: name=php-mysql state=installed
+
+    - name: mysql-enable
+      service: name=mysqld state=started enabled=yes
+
+    - name: httpd-enable
+      service: name=httpd state=started enabled=yes
+
