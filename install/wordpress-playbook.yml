@@ -1,0 +1,15 @@
+- hosts: cm-cms
+  vars:
+    version: 4.1.1
+  tasks:
+    - name: wordpress download
+      get_url: url="http://ja.wordpress.org/wordpress-{{ version }}-ja.tar.gz" dest=/tmp
+
+    - name: TAR ZXF 
+      command: tar zxf /tmp/wordpress-{{ version }}-ja.tar.gz chdir="/var/www/html"
+
+    - name: config
+      command: chown -R apache:apache /var/www/html
+
+    - name: httpd restart
+      service: name=httpd state=restarted
